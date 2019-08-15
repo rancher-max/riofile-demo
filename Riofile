@@ -25,6 +25,6 @@ services:
   demo4:
    build:
      repo: https://github.com/StrongMonkey/rancher.git
-     branch: riofile
+     branch: rancher-riofile
    ports:
    - 80/http
