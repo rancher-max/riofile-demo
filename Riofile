@@ -18,3 +18,13 @@ services:
    rollout: true
    rolloutIncrement: 5
    rolloutInterval: 5
+  demo3:
+   image: ibuildthecloud/demo:v1
+   ports:
+   - 80/http
+  demo4:
+   build:
+     repo: https://github.com/StrongMonkey/rancher.git
+     branch: riofile
+   ports:
+   - 80/http
