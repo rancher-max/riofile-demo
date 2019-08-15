@@ -9,3 +9,9 @@ services:
      branch: master
    ports:
    - 8080/http
+  demo2:
+   build:
+     repo: https://github.com/StrongMonkey/riofile-demo.git
+     branch: master
+   ports:
+   - 8080/http
