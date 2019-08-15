@@ -15,3 +15,6 @@ services:
      branch: master
    ports:
    - 8080/http
+   rollout: true
+   rolloutIncrement: 5
+   rolloutInterval: 5
