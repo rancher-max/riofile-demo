@@ -1,5 +1,5 @@
 services:
   demo:
-   scale: 10
+   scale: 9
    ports:
    - 8080/http
