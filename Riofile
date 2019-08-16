@@ -3,28 +3,7 @@ services:
    scale: 2
    ports:
    - 8080/http
-  demo1:
-   build:
-     repo: https://github.com/StrongMonkey/demo.git
-     branch: master
-   ports:
-   - 8080/http
-  demo2:
-   build:
-     repo: https://github.com/StrongMonkey/riofile-demo.git
-     branch: master
-   ports:
-   - 8080/http
-   rollout: true
-   rolloutIncrement: 5
-   rolloutInterval: 5
   demo3:
    image: ibuildthecloud/demo:v1
-   ports:
-   - 80/http
-  demo4:
-   build:
-     repo: https://github.com/StrongMonkey/rancher.git
-     branch: rancher-riofile
    ports:
    - 80/http
