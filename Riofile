@@ -1,17 +1,5 @@
 services:
   demo:
-   scale: 1
-   ports:
-   - 8080/http
-  demo1:
-   ports:
-   - 8080/http
-   build:
-    repo: https://github.com/StrongMonkey/riofile-demo.git
-    branch: master
-    pushRegistry: docker.io
-    push: true
-  demo3:
    image: ibuildthecloud/demo:v1
    ports:
    - 80/http
