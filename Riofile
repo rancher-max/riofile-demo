@@ -7,6 +7,8 @@ services:
    ports:
    - 8080/http
    build:
+    repo: https://github.com/StrongMonkey/riofile-demo.git
+    branch: master
     pushRegistry: docker.io
     push: true
   demo3:
