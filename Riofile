@@ -3,6 +3,3 @@ services:
    image: ibuildthecloud/demo:v1
    ports:
    - 80/http
-  demo2:
-   ports:
-   - 8080/http
