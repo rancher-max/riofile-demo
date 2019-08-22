@@ -1,5 +1,6 @@
 services:
   demo:
    image: ibuildthecloud/demo:v1
+   scale: 2
    ports:
    - 80/http
