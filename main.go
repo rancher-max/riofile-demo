@@ -11,6 +11,7 @@ import (
 func handler(w http.ResponseWriter, r *http.Request) {
 	time.Sleep(100 * time.Millisecond)
 	fmt.Fprintln(w, "Hi there, I am rio:v19238273232")
+	crap
 }
 
 func main() {
