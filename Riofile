@@ -17,13 +17,14 @@ services:
     configs:
     - conf/index.html:/usr/share/nginx/html/index.html
   demo:
-   image: ibuildthecloud/demo:v1
-   scale: 1
-   ports:
-   - 80/http
+    image: ibuildthecloud/demo:v3
+    scale: 1
+    ports:
+    - 80/http
   max-demo:
-   repo: https://github.com/rancher-max/rio-demo
-   branch: master
-   scale: 1
-   ports:
-   - 80/http
+    build:
+      repo: https://github.com/rancher-max/rio-demo
+      branch: master
+    scale: 1-5
+    ports:
+    - 80/http
