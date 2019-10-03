@@ -24,8 +24,11 @@ services:
   max-demo:
     build:
       repo: https://github.com/rancher-max/rio-demo
+      branch: master
+      noCache: true
+      stageOnly: true
     scale: 1-5
     version: v1
     rollout: false
     ports:
-    - 80:80
+    - 80:8080/tcp,http-80
