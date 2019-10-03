@@ -1,0 +1,33 @@
+configs:
+  conf:
+    index.html: |-
+      <!DOCTYPE html>
+      <html>
+      <body>
+      
+      <h1>Hello World 1</h1>
+      
+      </body>
+      </html>
+services:
+  nginx:
+    image: nginx
+    ports:
+    - 80/http
+    configs:
+    - conf/index.html:/usr/share/nginx/html/index.html
+  demo:
+    image: ibuildthecloud/demo:v3
+    scale: 1
+    ports:
+    - 80/http
+  max-test:
+    build:
+      repo: https://github.com/rancher-max/rio-demo
+      branch: master
+      noCache: true
+      stageOnly: true
+    scale: 1-5
+    concurrency: 10
+    ports:
+    - 80:8080/tcp,http-80
