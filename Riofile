@@ -26,7 +26,6 @@ services:
    - 80/http
   max-demo:
    repo: https://github.com/rancher-max/rio-demo
-   branch: master
    scale: 1-5
    ports:
    - 8080/http
