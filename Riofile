@@ -24,7 +24,6 @@ services:
   max-demo:
     build:
       repo: https://github.com/rancher-max/rio-demo
-      branch: master
     scale: 1-5
     ports:
     - 80:80
