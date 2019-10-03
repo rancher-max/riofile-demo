@@ -1,6 +1,29 @@
+configs:
+  conf:
+    index.html: |-
+      <!DOCTYPE html>
+      <html>
+      <body>
+      
+      <h1>Hello World 1</h1>
+      
+      </body>
+      </html>
 services:
+  nginx:
+    image: nginx
+    ports:
+    - 80/http
+    configs:
+    - conf/index.html:/usr/share/nginx/html/index.html
   demo:
    image: ibuildthecloud/demo:v1
-   scale: 2
+   scale: 1
+   ports:
+   - 80/http
+  max-demo:
+   repo: https://github.com/rancher-max/rio-demo
+   branch: master
+   scale: 1
    ports:
    - 80/http
