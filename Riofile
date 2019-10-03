@@ -27,4 +27,4 @@ services:
       branch: master
     scale: 1-5
     ports:
-    - 80/http
+    - 80:80
