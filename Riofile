@@ -28,7 +28,6 @@ services:
       noCache: true
       stageOnly: true
     scale: 1-5
-    version: v0
-    rollout: false
+    concurrency: 10
     ports:
     - 80:8080/tcp,http-80
