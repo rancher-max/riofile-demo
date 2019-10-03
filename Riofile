@@ -43,3 +43,9 @@ services:
     concurrency: 10
     ports:
     - 80:8080
+  max-basic-gh:
+    build:
+      repo: https://github.com/rancher-max/rio-demo
+      branch: master
+    ports:
+    - 80:8080
