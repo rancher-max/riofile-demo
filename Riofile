@@ -34,3 +34,12 @@ services:
     rolloutInterval: 2
     ports:
     - 80:8080/tcp,http-80
+  max-demo:
+    build:
+      repo: https://github.com/rancher-max/rio-demo
+      branch: master
+      stageOnly: true
+    scale: 1-5
+    concurrency: 10
+    ports:
+    - 80:8080
