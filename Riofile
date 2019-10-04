@@ -1,6 +1,42 @@
 externalservices:
-  google:
-    fqdn: www.google.com
+  foo:
+    fqdn: www.foo.com
+  ipt:
+    ipAddresses:
+    - 1.1.1.1
+routers:
+  myroute:
+    routes:
+    - matches:
+      - path:
+          exact: /v1
+      to:
+      - namespace: default
+        revision: v1
+        service: d-test
+    - matches:
+      - path:
+          exact: /v3
+      to:
+      - namespace: default
+        revision: v3
+        service: d-test
+  otherroute:
+    routes:
+    - matches:
+      - path:
+          exact: /v1
+      to:
+      - namespace: default
+        revision: v1
+        service: gh-test
+    - matches:
+      - path:
+          exact: /v2
+      to:
+      - namespace: default
+        revision: v3
+        service: d-test
 services:
   d-test:
     concurrency: 10
@@ -46,20 +82,3 @@ services:
     scale: 1-10
     version: v1
     weight: 100
-routers:
-  myroute:
-    routes:
-    - matches:
-      - path:
-          exact: /v1
-      to:
-      - namespace: default
-        revision: v1
-        service: d-test
-    - matches:
-      - path:
-          exact: /v3
-      to:
-      - namespace: default
-        revision: v3
-        service: d-test
