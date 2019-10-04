@@ -1,46 +1,65 @@
-configs:
-  conf:
-    index.html: |-
-      <!DOCTYPE html>
-      <html>
-      <body>
-      
-      <h1>Hello World 1</h1>
-      
-      </body>
-      </html>
+externalservices:
+  google:
+    fqdn: www.google.com
 services:
-  nginx:
-    env:
-    - POD_NAMESPACE=testing
-    image: nginx
-    ports:
-    - 80/http
-    configs:
-    - conf/index.html:/usr/share/nginx/html/index.html
-  docker-test:
-    image: ibuildthecloud/demo:v1
-    weight: 0
-    scale: 4
-    ports:
-    - 80/http
-  gh-stage-test:
-    app: gh-stage
-    build:
-      repo: https://github.com/rancher-max/rio-demo
-      branch: master
-      stageOnly: true
-    version: v1
-    scale: 1-5
+  d-test:
     concurrency: 10
+    image: ibuildthecloud/demo:v1
+    imagePullPolicy: IfNotPresent
+    ports:
+    - "80"
     rollout: true
     rolloutIncrement: 5
-    rolloutInterval: 2
+    rolloutInterval: 5
+    scale: 1-10
+    version: v1
+    weight: 100
+  d-test-v3:
+    app: d-test
+    concurrency: 10
+    image: ibuildthecloud/demo:v3
+    imagePullPolicy: IfNotPresent
     ports:
-    - 80:8080
-  gh-basic:
+    - "80"
+    rollout: true
+    rolloutIncrement: 5
+    rolloutInterval: 5
+    scale: 1-10
+    version: v3
+  gh-test:
     build:
-      repo: https://github.com/rancher-max/rio-demo
+      BuildTimeout: null
       branch: master
+      buildContext: .
+      dockerFile: Dockerfile
+      dockerFilePath: .
+      repo: https://github.com/rancher-max/rio-demo
+      template: buildkit
+    concurrency: 10
+    image: localhost:5442/max-ns-gh-test:19bc3ddfe17fb058163871dc48e07521397422bd
+    imagePullPolicy: IfNotPresent
     ports:
     - 80:8080
+    rollout: true
+    rolloutIncrement: 5
+    rolloutInterval: 5
+    scale: 1-10
+    version: v1
+    weight: 100
+routers:
+  myroute:
+    routes:
+    - matches:
+      - path:
+          exact: /v1
+      to:
+      - namespace: default
+        revision: v1
+        service: d-test
+    - matches:
+      - path:
+          exact: /v3
+      to:
+      - namespace: default
+        revision: v3
+        service: d-test
