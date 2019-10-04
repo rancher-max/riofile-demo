@@ -17,10 +17,10 @@ services:
     configs:
     - conf/index.html:/usr/share/nginx/html/index.html
   demo:
-    image: ibuildthecloud/demo:v2
-    weight: 0
-    version: v2
-    scale: 1
+    image: ibuildthecloud/demo:v3
+    weight: 5
+    version: v3
+    scale: 2
     ports:
     - 80/http
   max-test:
