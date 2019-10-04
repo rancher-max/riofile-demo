@@ -11,6 +11,8 @@ configs:
       </html>
 services:
   nginx:
+    env:
+    - POD_NAMESPACE=testing
     image: nginx
     ports:
     - 80/http
