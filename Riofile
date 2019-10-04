@@ -18,9 +18,8 @@ services:
     - conf/index.html:/usr/share/nginx/html/index.html
   demo:
     image: ibuildthecloud/demo:v3
-    weight: 5
-    version: v3
-    scale: 2
+    weight: 0
+    scale: 4
     ports:
     - 80/http
   max-test:
