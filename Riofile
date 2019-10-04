@@ -17,7 +17,9 @@ services:
     configs:
     - conf/index.html:/usr/share/nginx/html/index.html
   demo:
-    image: ibuildthecloud/demo:v1
+    image: ibuildthecloud/demo:v2
+    weight: 0
+    version: v2
     scale: 1
     ports:
     - 80/http
