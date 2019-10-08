@@ -1,0 +1,9 @@
+name: 'Build rio-demo action'
+description: 'Build a rio-demo application using Github action'
+author: 'StrongMonkey'
+branding:
+  icon: 'cloud'
+  color: 'blue'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
