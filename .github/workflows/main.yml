@@ -9,5 +9,5 @@ jobs:
 
     steps:
     - name: use-docker
-      uses: actions/hello-world-docker-action@master
+      uses: StrongMonkey/riofile-demo@master
 
