@@ -72,6 +72,7 @@ services:
       repo: https://github.com/rancher-max/rio-demo
       template: buildkit
     concurrency: 10
+    image: localhost:5442/default-gh-test:19bc3ddfe17fb058163871dc48e07521397422bd
     ports:
     - 80:8080
     rollout: true
@@ -79,4 +80,23 @@ services:
     rolloutInterval: 5
     scale: 1-10
     version: v1
+    weight: 100
+  infallible-hopper3:
+    build:
+      BuildTimeout: null
+      branch: master
+      buildContext: .
+      dockerFile: Dockerfile
+      dockerFilePath: .
+      repo: https://github.com/rancher/rio-demo
+      template: buildkit
+    concurrency: 10
+    image: localhost:5442/default-infallible-hopper3:f8fab97fddc8ed5e98e45cd6373ad6feff3197f9
+    imagePullPolicy: IfNotPresent
+    ports:
+    - 80:8080
+    rollout: true
+    rolloutIncrement: 5
+    rolloutInterval: 5
+    scale: 1-10
     weight: 100
