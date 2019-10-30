@@ -1,46 +1,66 @@
-configs:
-  conf:
-    index.html: |-
-      <!DOCTYPE html>
-      <html>
-      <body>
-      
-      <h1>Hello World 1</h1>
-      
-      </body>
-      </html>
+externalservices:
+  foo:
+    fqdn: www.foo.com
+  ipt:
+    ipAddresses:
+    - 1.1.1.1
+routers:
+  myroute:
+    routes:
+    - match:
+        path:
+          exact: /v1
+      to:
+      - namespace: default
+        version: v1
+        app: d-test
+    - match:
+        path:
+          exact: /v3
+      to:
+      - namespace: default
+        version: v3
+        app: d-test
+  otherroute:
+    routes:
+    - match:
+        path:
+          exact: /v1
+      to:
+      - namespace: default
+        version: v1
+        app: d-test
+    - match:
+        path:
+          exact: /v2
+      to:
+      - namespace: default
+        version: v3
+        app: d-test
 services:
-  nginx:
-    env:
-    - POD_NAMESPACE=testing
-    image: nginx
-    ports:
-    - 80/http
-    configs:
-    - conf/index.html:/usr/share/nginx/html/index.html
-  docker-test:
+  d-test:
     image: ibuildthecloud/demo:v1
-    weight: 0
-    scale: 4
+    imagePullPolicy: IfNotPresent
     ports:
-    - 80/http
-  gh-stage-test:
-    app: gh-stage
-    build:
-      repo: https://github.com/rancher-max/rio-demo
-      branch: master
-      stageOnly: true
+    - "80"
     version: v1
-    scale: 1-5
-    concurrency: 10
-    rollout: true
-    rolloutIncrement: 5
-    rolloutInterval: 2
+  d-test-v3:
+    app: d-test
+    image: ibuildthecloud/demo:v3
+    imagePullPolicy: IfNotPresent
     ports:
-    - 80:8080
-  gh-basic:
+    - "80"
+    version: v3
+  infallible-hopper3:
     build:
-      repo: https://github.com/rancher-max/rio-demo
+      BuildTimeout: null
       branch: master
+      buildContext: .
+      dockerFile: Dockerfile
+      dockerFilePath: .
+      repo: https://github.com/rancher/rio-demo
+      template: buildkit
+    image: localhost:5442/default-infallible-hopper3:f8fab97fddc8ed5e98e45cd6373ad6feff3197f9
+    imagePullPolicy: IfNotPresent
     ports:
     - 80:8080
