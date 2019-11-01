@@ -35,7 +35,7 @@ routers:
           exact: /v2
       to:
       - namespace: default
-        version: v3
+        version: v2
         app: d-test
 services:
   d-test:
@@ -44,7 +44,7 @@ services:
     ports:
     - "80"
     version: v1
-    weight: 0
+    weight: 100
   d-test-v3:
     app: d-test
     image: ibuildthecloud/demo:v3
@@ -52,7 +52,7 @@ services:
     ports:
     - "80"
     version: v3
-    weight: 50
+    weight: 0
   d-test-v2:
     app: d-test
     image: ibuildthecloud/demo:v2
@@ -60,7 +60,7 @@ services:
     ports:
     - "80"
     version: v2
-    weight: 50
+    weight: 0
   infallible-hopper3:
     build:
       BuildTimeout: null
