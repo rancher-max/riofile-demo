@@ -44,7 +44,7 @@ services:
     ports:
     - "80"
     version: v1
-    weight: 0
+    weight: 50
   d-test-v3:
     app: d-test
     image: ibuildthecloud/demo:v3
@@ -52,7 +52,7 @@ services:
     ports:
     - "80"
     version: v3
-    weight: 100
+    weight: 50
   infallible-hopper3:
     build:
       BuildTimeout: null
@@ -62,7 +62,6 @@ services:
       dockerFilePath: .
       repo: https://github.com/rancher/rio-demo
       template: buildkit
-    image: localhost:5442/default-infallible-hopper3:f8fab97fddc8ed5e98e45cd6373ad6feff3197f9
     imagePullPolicy: IfNotPresent
     ports:
     - 80:8080
