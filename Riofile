@@ -44,6 +44,7 @@ services:
     ports:
     - "80"
     version: v1
+    weight: 0
   d-test-v3:
     app: d-test
     image: ibuildthecloud/demo:v3
@@ -51,6 +52,7 @@ services:
     ports:
     - "80"
     version: v3
+    weight: 100
   infallible-hopper3:
     build:
       BuildTimeout: null
