@@ -1,3 +1,5 @@
 services:
   mango:
     image: ./blah/
+    ports:
+    - "8080"
