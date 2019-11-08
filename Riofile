@@ -1,3 +1,14 @@
+configs:
+  conf:
+    index.html: |-
+      <!DOCTYPE html>
+      <html>
+      <body>
+
+      <h1>Hello World 1</h1>
+
+      </body>
+      </html>
 externalservices:
   foo:
     fqdn: www.foo.com
@@ -38,6 +49,12 @@ routers:
         version: v3
         app: d-test
 services:
+  nginx:
+    image: nginx
+    ports:
+    - 80/http
+    configs:
+    - conf/index.html:/usr/share/nginx/html/index.html
   d-test:
     image: ibuildthecloud/demo:v1
     imagePullPolicy: IfNotPresent
