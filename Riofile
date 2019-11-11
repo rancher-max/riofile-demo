@@ -60,6 +60,7 @@ services:
     configs:
     - conf/index.html:/usr/share/nginx/html/index.html
   d-test:
+    app: d-test
     image: ibuildthecloud/demo:v1
     imagePullPolicy: IfNotPresent
     ports:
