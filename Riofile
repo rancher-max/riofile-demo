@@ -1,0 +1,9 @@
+services:
+  mango:
+    image: ./blah/
+    ports:
+    - "8080"
+    build:
+        context: ./blah/
+        pushRegistry: index.docker.io
+        imageName: maxross/riofile-test
