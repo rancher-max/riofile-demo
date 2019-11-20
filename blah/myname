@@ -1,0 +1,90 @@
+configs:
+  conf:
+    index.html: |-
+      <!DOCTYPE html>
+      <html>
+      <body>
+
+      <h1>Hello World 1</h1>
+
+      </body>
+      </html>
+externalservices:
+  foo:
+    fqdn: www.foo.com
+  ipt:
+    ipAddresses:
+    - 1.1.1.1
+routers:
+  myroute:
+    routes:
+    - match:
+        path:
+          exact: /v1
+      to:
+      - namespace: default
+        version: v1
+        app: d-test
+    - match:
+        path:
+          exact: /v3
+      to:
+      - namespace: default
+        version: v3
+        app: d-test
+  otherroute:
+    routes:
+    - match:
+        path:
+          exact: /v1
+      to:
+      - namespace: default
+        version: v1
+        app: d-test
+    - match:
+        path:
+          exact: /v2
+      to:
+      - namespace: default
+        version: v3
+        app: d-test
+services:
+  mango:
+    image: ./blah/
+    ports:
+    - "8080"
+  nginx:
+    image: nginx
+    ports:
+    - 80/http
+    configs:
+    - conf/index.html:/usr/share/nginx/html/index.html
+  d-test:
+    app: d-test
+    image: ibuildthecloud/demo:v1
+    imagePullPolicy: IfNotPresent
+    ports:
+    - "80"
+    version: v1
+    weight: 100
+  d-test-v3:
+    app: d-test
+    image: ibuildthecloud/demo:v3
+    imagePullPolicy: IfNotPresent
+    ports:
+    - "80"
+    version: v3
+    weight: 0
+  infallible-hopper3:
+    build:
+      BuildTimeout: null
+      branch: master
+      buildContext: .
+      dockerFile: Dockerfile
+      dockerFilePath: .
+      repo: https://github.com/rancher/rio-demo
+      template: buildkit
+    image: localhost:5442/default-infallible-hopper3:f8fab97fddc8ed5e98e45cd6373ad6feff3197f9
+    imagePullPolicy: IfNotPresent
+    ports:
+    - 80:8080
