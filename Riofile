@@ -67,6 +67,8 @@ services:
     - "80"
     version: v1
     weight: 100
+    env:
+    - FOO=BAR
   d-test-v3:
     app: d-test
     image: ibuildthecloud/demo:v3
