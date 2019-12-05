@@ -1,10 +1,11 @@
 services:
   custrev:
+    #image: localhost:5442/default-infallible-hopper3:f8fab97fddc8ed5e98e45cd6373ad6feff3197f9
     build:
+      branch: master
+      buildContext: .
+      dockerfile: Dockerfile
       repo: https://github.com/rancher-max/rio-demo
       imageName: myname/custimage
     ports:
     - 8080
-
-template:
-  envSubst: true # use ENV vars during templating
