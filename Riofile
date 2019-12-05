@@ -1,6 +1,5 @@
 services:
   custrev:
-    #image: localhost:5442/default-infallible-hopper3:f8fab97fddc8ed5e98e45cd6373ad6feff3197f9
     build:
       branch: master
       buildContext: .
@@ -9,3 +8,10 @@ services:
       imageName: myname/custimage
     ports:
     - 8080
+  custlocal:
+    build:
+      buildContext: ./blah/
+      dockerfile: Dockerfile
+      imageName: localcontext/blahimage
+    ports:
+    - "8080"
