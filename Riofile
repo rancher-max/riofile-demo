@@ -11,7 +11,7 @@ services:
   custlocal:
     build:
       buildContext: ./blah/
-      dockerfile: Dockerfile
+      dockerfile: ./blah/Dockerfile
       imageName: localcontext/blahimage
     ports:
     - "8080"
