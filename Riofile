@@ -1,5 +1,8 @@
 services:
   custrev:
+    env:
+    - FOO=${REVISION}
+    - BAR=BAZ
     build:
       branch: master
       buildContext: .
@@ -12,6 +15,6 @@ services:
     build:
       buildContext: ./blah/
       dockerfile: ./blah/Dockerfile
-      imageName: localcontext/blahimage
+      imageName: localcontext/blahimage:${REVISION}
     ports:
     - "8080"
