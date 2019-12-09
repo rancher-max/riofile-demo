@@ -9,6 +9,16 @@ configs:
 
       </body>
       </html>
+  v3:
+    index.html: |-
+      <!DOCTYPE html>
+      <html>
+      <body>
+
+      <h1>Third conf</h1>
+
+      </body>
+      </html>
 externalservices:
   foo:
     fqdn: www.foo.com
@@ -58,7 +68,7 @@ services:
     ports:
     - 80/http
     configs:
-    - conf/index.html:/usr/share/nginx/html/index.html
+    - v3/index.html:/usr/share/nginx/html/index.html
   d-test:
     app: d-test
     image: ibuildthecloud/demo:v1
@@ -69,6 +79,7 @@ services:
     weight: 100
     env:
     - FOO=BAR
+    - BAR=BAZ
   d-test-v3:
     app: d-test
     image: ibuildthecloud/demo:v3
