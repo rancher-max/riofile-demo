@@ -3,6 +3,7 @@ services:
     env:
     - FOO=${REVISION}
     - BAR=BAZ
+    - BAZ=${NAMESPACE}
     build:
       branch: master
       buildContext: .
@@ -15,6 +16,9 @@ services:
     build:
       buildContext: ./blah/
       dockerfile: ./blah/Dockerfile
-      imageName: localcontext/blahimage:dev
+      imageName: localcontext/blahimage:${REVISION}
     ports:
     - "8080"
+
+template:
+  envSubst: true # use ENV vars during templating
