@@ -1,9 +1,12 @@
 services:
   custrev:
     env:
-    - FOO=${REVISION}
-    - BAR=BAZ
-    - BAZ=${NAMESPACE}
+    - name: FOO
+      value: ${REVISION}
+    - name: BAR
+      value: BAZ
+    - name: BAZ
+      value: ${NAMESPACE}
     build:
       branch: master
       buildContext: .
@@ -19,6 +22,15 @@ services:
       imageName: localcontext/blahimage:dev
     ports:
     - "8080"
+  please:
+    app: ${NAMESPACE}
+    build:
+      branch: master
+      buildContext: .
+      dockerfile: Dockerfile
+      repo: https://github.com/rancher-max/rio-demo
+    ports:
+    - 8080
 
 template:
   goTemplate: true # use go templating
