@@ -21,4 +21,13 @@ services:
     - "8080"
 
 template:
+  goTemplate: true # use go templating
   envSubst: true # use ENV vars during templating
+  questions:  # now make some questions that we provide answers too
+  - variable: FOO
+    description: ""
+  - variable: NAMESPACE
+    description: "The namespace"
+  - variable: REVISION
+    description: "The revision"
+    
