@@ -19,7 +19,7 @@ services:
     build:
       buildContext: ./blah/
       dockerfile: ./blah/Dockerfile
-      imageName: localcontext/blahimage:dev
+      imageName: localcontext/blahimage:${REVISION}
     ports:
     - "8080"
   please:
