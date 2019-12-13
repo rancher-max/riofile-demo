@@ -1,0 +1,4 @@
+services:
+  somecontext:
+    build:
+      context: ../blah/Dockerfile
