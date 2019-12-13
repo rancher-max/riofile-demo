@@ -1,4 +1,10 @@
 services:
   somecontext:
+    ports:
+    - "8080"
     build:
-      context: ../blah/Dockerfile
+      noCache: true
+      context: ../blah/
+      dockerfile: Dockerfile
+      args:
+      - mycontext=RELATIVEBLAH
