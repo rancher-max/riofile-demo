@@ -59,6 +59,17 @@ routers:
         version: v3
         app: d-test
 services:
+  timeoutint:
+    autoscale:
+      concurrency: 10
+      maxReplicas: 10
+      minReplicas: 1
+    ports:
+    - 80:8080/http
+    build:
+     repo: https://github.com/rancher-max/rio-demo
+     branch: master
+     timeout: 1200
   mango:
     image: ./blah/
     ports:
