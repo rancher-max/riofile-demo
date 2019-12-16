@@ -69,7 +69,7 @@ services:
     build:
      repo: https://github.com/rancher-max/rio-demo
      branch: master
-     timeout: 1200
+     timeout: 1
   mango:
     image: ./blah/
     ports:
